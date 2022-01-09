@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+
 // use common\components\ActiveRecord;
 // use yii\behaviors\AttributeBehavior;
 // use common\components\traits\ActiveRecordHelper;
@@ -28,7 +29,7 @@ class Log extends \common\components\ActiveRecord
      */
     public static function tableName()
     {
-        return 'log';
+        return '{{%log}}';
     }
 
     /**

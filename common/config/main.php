@@ -14,10 +14,16 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        //jwt token
+//        'jwt' => [
+//            'class' => \sizeg\jwt\Jwt::class,
+//            'key'   => 'secret',
+//            'jwtValidationData' => \app\components\JwtValidationData::class,
+//        ],
         'redis' => [
             'class' => 'yii\redis\Connection',
             'hostname' => 'localhost',
-            'port' => 6380,
+            'port' => 6379,
             'database' => 0,
 //            'useSSL' => true,
             // Use contextOptions for more control over the connection (https://www.php.net/manual/en/context.php), not usually needed
