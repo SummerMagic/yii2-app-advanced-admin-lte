@@ -1,131 +1,144 @@
 <?php
 
-namespace common\baseModels;
+namespace common\models\baseModels;
 
 use Yii;
+use yii\behaviors\AttributeBehavior;
+use common\components\ActiveRecord;
+use common\components\behaviors\DatetimeBehavior;
 
 /**
- * This is the model class for table "lp_houses".
+ * This is the model class for table "{{%houses}}".
  *
- * @property int $id
- * @property int $oldid 旧id
- * @property string $borough_name 楼盘名称
- * @property string $pinyin 楼盘名称全拼
- * @property string|null $borough_names 相似名称
- * @property string|null $borough_alias 项目期数
- * @property string|null $borough_address 项目位置
- * @property string|null $borough_letter 楼盘字母表示
- * @property int $cityid 站点城市ID
- * @property string|null $cityname 城市名称
- * @property string $youhui_discount 优惠
- * @property int|null $cityarea_id 区域id
- * @property int $info_price 楼盘价格
- * @property int $start_price 最低价
- * @property int $hight_price 最高价
- * @property int $suggest_price 参考价格
- * @property int $price_unit 价格单位，1是元/㎡,2是万元/套
- * @property int|null $borough_section 楼盘版块
- * @property string|null $borough_level 装修状态
- * @property string|null $borough_level_info 装修描述
- * @property int|null $borough_type_old 物业类型旧
- * @property int $borough_type 物业类型
- * @property int|null $borough_type2 物业类型分类
- * @property string|null $attribute 特色属性
- * @property int|null $borough_houses 房屋属性
- * @property int|null $borough_typeof 建筑类型
- * @property int|null $borough_frame 建筑结构
- * @property int $borough_sale 销售状态
- * @property int $is_sell_out 是否售完，1为售完，排序专用
- * @property string|null $room_type 户型描述
- * @property float|null $map_lng 楼盘经度
- * @property float|null $map_lat 楼盘纬度
- * @property string|null $layout_map 地图层
- * @property int|null $layout_zoom 地图层大小
- * @property string|null $borough_thumb 楼盘缩略图
- * @property string|null $borough_thumb_weixin 微信缩略图
- * @property string|null $sell_phone 售楼电话
- * @property string|null $house_phone 售楼电话,如果设置“只显示该电话”,前端则显示此售楼电话
- * @property int $only_sell_phone 是否只显示销售电话1=是 0=否
- * @property int $sell_time_int 开盘时间整形
- * @property int $sell_time_slot 开盘时间段
- * @property string|null $sell_time 开盘时间描述
- * @property int|null $borough_completion_int 入住时间
- * @property int $is_qifang 是否期房
- * @property int $is_xianfang 是否现房
- * @property int $month_num 最近3月楼盘点击
- * @property int|null $click_num 点击数量
- * @property int|null $sell_num 销售数量
- * @property string|null $pic_num 户型图，相册数量
- * @property string|null $borough_developer 开发商
- * @property int $is_checked 是否审核
- * @property int|null $isnew 是否新盘
- * @property string|null $creater 发布者,如果为：lpjacj表示采集
- * @property int $youhuiid 楼盘优惠id
- * @property string $house_url 楼盘短地址
- * @property string|null $alter_ip 修改ip
- * @property string|null $alter_name 修改者姓名
- * @property int|null $alter_time 修改时间
- * @property int $created 创建时间
- * @property int|null $orderby 排序
- * @property int|null $isdel 是否删除
- * @property int $evaluate_time 评估时间
- * @property int $buygroup 购买意向人数
- * @property int $tg_base_num 团购初始数量
- * @property string|null $qq_service 团购咨询qq
- * @property string|null $qq_group 团购qq群
- * @property int $is_hot
- * @property int $is_hot_sort 推荐排序
- * @property int $is_index_area 首页区域推荐
- * @property int $is_index_price 首页价格推荐
- * @property int $is_index_list 首页楼盘大全推荐
- * @property int $is_index_b_image 首页版块图片推荐
- * @property int $is_index_b_list 首页版块列表推荐
- * @property int $is_index_link 首页精品推荐
- * @property int $is_list_search 列表搜索推广推荐楼盘
- * @property int $is_m_guess_like m端首页猜你喜欢
- * @property int $is_m_house_detail_tj m端楼盘详情页推荐楼盘
- * @property int $is_m_hot_search m端新房最近热搜推荐
- * @property string|null $created_at
- * @property string|null $updated_at
+ * @property integer $id
+ * @property integer $oldid
+ * @property string $borough_name
+ * @property string $pinyin
+ * @property string $borough_names
+ * @property string $borough_alias
+ * @property string $borough_address
+ * @property string $borough_letter
+ * @property integer $cityid
+ * @property string $cityname
+ * @property string $youhui_discount
+ * @property integer $cityarea_id
+ * @property integer $info_price
+ * @property integer $start_price
+ * @property integer $hight_price
+ * @property integer $suggest_price
+ * @property integer $price_unit
+ * @property integer $borough_section
+ * @property string $borough_level
+ * @property string $borough_level_info
+ * @property integer $borough_type_old
+ * @property integer $borough_type
+ * @property integer $borough_type2
+ * @property string $attribute
+ * @property integer $borough_houses
+ * @property integer $borough_typeof
+ * @property integer $borough_frame
+ * @property integer $borough_sale
+ * @property integer $is_sell_out
+ * @property string $room_type
+ * @property double $map_lng
+ * @property double $map_lat
+ * @property string $layout_map
+ * @property integer $layout_zoom
+ * @property string $borough_thumb
+ * @property string $borough_thumb_weixin
+ * @property string $sell_phone
+ * @property string $house_phone
+ * @property integer $only_sell_phone
+ * @property integer $sell_time_int
+ * @property integer $sell_time_slot
+ * @property string $sell_time
+ * @property integer $borough_completion_int
+ * @property integer $is_qifang
+ * @property integer $is_xianfang
+ * @property integer $month_num
+ * @property integer $click_num
+ * @property integer $sell_num
+ * @property string $pic_num
+ * @property string $borough_developer
+ * @property integer $is_checked
+ * @property integer $isnew
+ * @property string $creater
+ * @property integer $youhuiid
+ * @property string $house_url
+ * @property string $alter_ip
+ * @property string $alter_name
+ * @property integer $alter_time
+ * @property integer $created
+ * @property integer $orderby
+ * @property integer $isdel
+ * @property integer $evaluate_time
+ * @property integer $buygroup
+ * @property integer $tg_base_num
+ * @property string $qq_service
+ * @property string $qq_group
+ * @property integer $is_hot
+ * @property integer $is_hot_sort
+ * @property integer $is_index_area
+ * @property integer $is_index_price
+ * @property integer $is_index_list
+ * @property integer $is_index_b_image
+ * @property integer $is_index_b_list
+ * @property integer $is_index_link
+ * @property integer $is_list_search
+ * @property integer $is_m_guess_like
+ * @property integer $is_m_house_detail_tj
+ * @property integer $is_m_hot_search
+ * @property string $created_at
+ * @property string $updated_at
  * @property string $weixinpic
- * @property string $videolink 视频连接
- * @property string $baidu_daohang_url 百度导航地址
- * @property string $weixin_2d_image 微信二维码
- * @property int $is_index_area_sort
- * @property int $is_index_price_sort
- * @property int $is_index_list_sort
- * @property int $is_index_b_image_sort
- * @property int $is_index_b_list_sort
- * @property int $is_index_link_sort
- * @property int $is_list_search_sort
- * @property int $is_m_guess_like_sort m端首页猜你喜欢排序
- * @property int $is_m_house_detail_tj_sort m端楼盘详情页推荐楼盘排序
- * @property int $is_m_hot_search_sort m端新房最近热搜推荐排序
- * @property string|null $sale_phone
- * @property string $extra_attribute 额外的特色属性
- * @property int $if_gb_need_idcard 详情页团购表单是否可以输入身份证后六位
- * @property int $is_show 是否显示,1-显示,0-隐藏
- * @property int $sync_status 同步小区状态 1 未同步 2已同步
- * @property int $is_vr 是否有VR图片，1：有；0：没有
+ * @property string $videolink
+ * @property string $baidu_daohang_url
+ * @property string $weixin_2d_image
+ * @property integer $is_index_area_sort
+ * @property integer $is_index_price_sort
+ * @property integer $is_index_list_sort
+ * @property integer $is_index_b_image_sort
+ * @property integer $is_index_b_list_sort
+ * @property integer $is_index_link_sort
+ * @property integer $is_list_search_sort
+ * @property integer $is_m_guess_like_sort
+ * @property integer $is_m_house_detail_tj_sort
+ * @property integer $is_m_hot_search_sort
+ * @property string $sale_phone
+ * @property string $extra_attribute
+ * @property integer $if_gb_need_idcard
+ * @property integer $is_show
+ * @property integer $sync_status
+ * @property integer $is_vr
  */
-class Houses extends \yii\db\ActiveRecord
+class Houses extends \common\components\ActiveRecord
 {
+    public static $modelName = '楼盘列表';
+    public $fileAttributes = [];
+
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function tableName()
     {
         return '{{%houses}}';
     }
+    public function behaviors()
+    {
+        return [
+            DatetimeBehavior::className(),
+        ];
+    }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['oldid', 'cityid', 'cityarea_id', 'info_price', 'start_price', 'hight_price', 'suggest_price', 'price_unit', 'borough_section', 'borough_type_old', 'borough_type', 'borough_type2', 'borough_houses', 'borough_typeof', 'borough_frame', 'borough_sale', 'is_sell_out', 'layout_zoom', 'only_sell_phone', 'sell_time_int', 'sell_time_slot', 'borough_completion_int', 'is_qifang', 'is_xianfang', 'month_num', 'click_num', 'sell_num', 'is_checked', 'isnew', 'youhuiid', 'alter_time', 'created', 'orderby', 'isdel', 'evaluate_time', 'buygroup', 'tg_base_num', 'is_hot', 'is_hot_sort', 'is_index_area', 'is_index_price', 'is_index_list', 'is_index_b_image', 'is_index_b_list', 'is_index_link', 'is_list_search', 'is_m_guess_like', 'is_m_house_detail_tj', 'is_m_hot_search', 'is_index_area_sort', 'is_index_price_sort', 'is_index_list_sort', 'is_index_b_image_sort', 'is_index_b_list_sort', 'is_index_link_sort', 'is_list_search_sort', 'is_m_guess_like_sort', 'is_m_house_detail_tj_sort', 'is_m_hot_search_sort', 'if_gb_need_idcard', 'is_show', 'sync_status', 'is_vr'], 'integer'],
+            [['oldid', 'cityid', 'cityarea_id', 'info_price', 'start_price', 'hight_price', 'suggest_price', 'borough_section', 'borough_type_old', 'borough_type', 'borough_type2', 'borough_houses', 'borough_typeof', 'borough_frame', 'borough_sale', 'sell_time_int', 'borough_completion_int', 'month_num', 'click_num', 'sell_num', 'youhuiid', 'alter_time', 'created', 'orderby', 'evaluate_time', 'buygroup', 'tg_base_num', 'is_hot_sort', 'is_index_list', 'is_index_area_sort', 'is_index_price_sort', 'is_index_list_sort', 'is_index_b_image_sort', 'is_index_b_list_sort', 'is_index_link_sort', 'is_list_search_sort', 'is_m_guess_like_sort', 'is_m_house_detail_tj_sort', 'is_m_hot_search_sort'], 'integer'],
             [['borough_name', 'pinyin', 'youhui_discount', 'sell_time_int', 'sell_time_slot', 'youhuiid', 'house_url', 'created', 'evaluate_time', 'buygroup', 'tg_base_num', 'weixinpic', 'videolink', 'baidu_daohang_url', 'weixin_2d_image'], 'required'],
+            [['is_sell_out', 'is_qifang', 'is_xianfang', 'is_checked', 'is_hot', 'is_index_area', 'is_index_price', 'is_index_b_image', 'is_index_b_list', 'is_index_link', 'is_list_search', 'is_m_guess_like', 'is_m_house_detail_tj', 'is_m_hot_search', 'is_show', 'is_vr'], 'boolean'],
             [['room_type'], 'string'],
             [['map_lng', 'map_lat'], 'number'],
             [['created_at', 'updated_at'], 'safe'],
@@ -140,12 +153,12 @@ class Houses extends \yii\db\ActiveRecord
             [['borough_thumb_weixin'], 'string', 'max' => 256],
             [['creater', 'alter_name'], 'string', 'max' => 20],
             [['alter_ip'], 'string', 'max' => 15],
-            [['qq_service', 'qq_group'], 'string', 'max' => 30],
+            [['qq_service', 'qq_group'], 'string', 'max' => 30]
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function attributeLabels()
     {

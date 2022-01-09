@@ -20,18 +20,20 @@ class m130524_201442_init extends Migration
             'password_reset_token' => $this->string()->unique()->comment('token'),
             'email' => $this->string()->notNull()->unique()->comment('电子邮件'),
             'status' => $this->smallInteger()->notNull()->defaultValue(10)->comment('状态'),
-            'created_at' => $this->integer()->notNull()->comment('创建时间'),
-            'updated_at' => $this->integer()->notNull()->comment('更新时间'),
+            'created_at' => $this->integer()->null()->comment('创建时间'),
+            'updated_at' => $this->integer()->null()->comment('更新时间'),
         ], $tableOptions);
 
-//        $this->insert('{{%user}}', [
-//            'username'=>'admin',
-//            'auth_key'=>'oqYHnmKD8RbhK7IZ60RwWsZeK9F8c2Sg',
-//            'password_hash'=>'$2y$13$1rTM.PFUhGx/OEOwSxcGu.pILDAu3ueVlWUdvRHepDXqkXINmI0Iy',
-//            'password_reset_token'=>null,
-//            'email'=>'test@domain.com',
-//            'status'=>10,
-//        ]);
+        $this->insert('{{%users}}', [
+            'username' => 'admin',
+            'auth_key' => 'hvZzT1yrMJgMO_JbdOafhjzw9RYx6PzZ',
+            'password_hash' => '$2y$13$1pfOkptg.5VusspwCpC6xuHa2dlOenZJpPWWhhntwOCcAb1NkbsI2',
+            'password_reset_token' => null,
+            'email' => '378400622@qq.com',
+            'status' => 10,
+            'created_at' => 1640865983,
+            'updated_at' => 1640865983
+        ]);
     }
 
     public function down()

@@ -9,7 +9,7 @@
             </div>
             <div class="pull-left info">
                 <p><?php echo Yii::$app->user->identity->username ?></p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
                         // ['label' => '资讯管理', 'icon' => 'fa fa-list-ol', 'url' => ['/article']],
                         // ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category']],
                     ]],
-                    
+
                     ['label' => '系统设置', 'icon' => 'fa fa-cog', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
                         ['label' => '用户管理', 'icon' => 'fa fa-caret-right', 'url' => ['/user']],
                         ['label' => '权限管理', 'icon' => 'fa fa-caret-right', 'url' => ['/rbac'], 'visible' => Yii::$app->user->isAdmin],

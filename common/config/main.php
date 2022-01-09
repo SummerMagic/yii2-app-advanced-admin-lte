@@ -95,8 +95,8 @@ return [
                     ],
                     'logVars'=>['_GET', '_POST', '_SESSION'],
                     'message' => [
-                        'from' => ['lonestone@qq.com'],
-                        'to' => ['lonestone@qq.com'],
+                        'from' => ['378400622@qq.com'],
+                        'to' => ['378400622@qq.com'],
                         'subject' => '【VRSITE】错误日志邮件通知',
                     ],
                 ],
