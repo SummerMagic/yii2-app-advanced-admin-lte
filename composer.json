@@ -1,7 +1,7 @@
 {
-    "name": "Yii2-admin",
+    "name": "Yii",
     "description": "Yii2-admin-template",
-    "keywords": ["VR"],
+    "keywords": ["Yii-admin"],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -16,7 +16,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4.0",
-        "yiisoft/yii2": ">=2.0.6",
+        "yiisoft/yii2": ">=2.0.44",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "almasaeed2010/adminlte": "~2.0",
@@ -48,6 +48,7 @@
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "yiisoft/yii2-redis": "~2.0.0",
+        "jianyan74/yii2-easy-wechat":"~2.0",
         "sizeg/yii2-jwt": "^2.0"
     },
     "require-dev": {
@@ -67,11 +68,5 @@
     },
     "scripts": {
         "post-install-cmd": "php init --env=Development --overwrite=n"
-    },
-    "repositories": {
-        "packagist": {
-            "type": "composer",
-            "url": "https://mirrors.aliyun.com/composer/"
-        }
     }
 }

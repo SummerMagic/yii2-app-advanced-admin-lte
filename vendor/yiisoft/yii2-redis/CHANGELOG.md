@@ -1,6 +1,12 @@
 Yii Framework 2 redis extension Change Log
 ==========================================
 
+2.0.17 January 11, 2022
+-----------------------
+
+- Enh #176: Fix reconnect logic bug, add `protected function sendRawCommand()` (ilyaplot)
+
+
 2.0.16 October 04, 2021
 -----------------------
 
