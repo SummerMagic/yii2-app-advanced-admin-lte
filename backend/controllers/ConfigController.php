@@ -53,12 +53,14 @@ class ConfigController extends Controller
             return $this->redirect(['index']);
         }
 
-        $config = Yii::$app->config->getAll(Yii::$app->session['config']['id']);
+        $configId = !empty(Yii::$app->session['config']['id']) ? Yii::$app->session['config']['id'] : null;
+
+        $config = Yii::$app->config->getAll($configId);
 
         return $this->render('index', [
             'config' => $config,
         ]);
     }
 
-    
+
 }

@@ -48,7 +48,7 @@ Yii::$app->params['role_children'] = $model->children;
 <label for="role-rule" class="control-label">授权项</label>
 <?= GridView::widget([
     'dataProvider' => $model->getUnassignedItemsDataProvider(),
-    'filterModel'  => $filterModel,
+//    'filterModel'  => $filterModel,
     'layout'       => "{items}\n{pager}",
     'columns'      => [
         [

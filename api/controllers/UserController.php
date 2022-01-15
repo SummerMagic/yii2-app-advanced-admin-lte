@@ -61,11 +61,11 @@ class UserController extends ActiveController
      * user_id 用户id
      * is_post_baned 布尔值 是否禁止访问
      */
-    public function actionBan($id=null)
+    public function actionBan($id = null)
     {
         $post = Yii::$app->request->post();
-        if(!$id) $id = $post['user_id'];
-        $model = User::findOne(['id'=>$id, 'config_id'=>$this->config->id]);
+        if (!$id) $id = $post['user_id'];
+        $model = User::findOne(['id' => $id, 'config_id' => $this->config->id]);
         if ($model !== null) {
             $model->is_post_baned = $post['is_post_baned'];
             $model->save(false);
@@ -81,11 +81,11 @@ class UserController extends ActiveController
      * user_id 用户id
      * is_post_readonly 布尔值 是否禁言
      */
-    public function actionSetReadOnly($id=null)
+    public function actionSetReadOnly($id = null)
     {
         $post = Yii::$app->request->post();
-        if(!$id) $id = $post['user_id'];
-        $model = User::findOne(['id'=>$id, 'config_id'=>$this->config->id]);
+        if (!$id) $id = $post['user_id'];
+        $model = User::findOne(['id' => $id, 'config_id' => $this->config->id]);
         if ($model !== null) {
             $model->is_post_readonly = $post['is_post_readonly'];
             $model->save(false);
@@ -106,17 +106,17 @@ class UserController extends ActiveController
         // $data['list']['month'] = Yii::$app->db->createCommand("SELECT a.*,(select count(*) from `user` as b where b.from_user_id = a.id and b.created_at >= date_sub(now(), INTERVAL 1 MONTH)) as invite_count FROM `user` as a WHERE config_id={$this->config->id} HAVING invite_count>0 order by invite_count DESC limit 100")->queryAll();
         // $data['rank']['all'] = 1 + Yii::$app->db->createCommand("select count(*) from (SELECT a.*,(select count(*) from `user` as b where b.from_user_id = a.id AND config_id={$this->config->id}) as invite_count FROM `user` as a WHERE config_id={$this->config->id}) as temp where invite_count >(select count(*) from `user` where from_user_id = :user_id AND config_id={$this->config->id})", ['user_id' => Yii::$app->user->id])->queryScalar();
         // $data['rank']['month'] = 1 + Yii::$app->db->createCommand("select count(*) from (SELECT a.*,(select count(*) from `user` as b where b.from_user_id = a.id AND config_id={$this->config->id} and b.created_at >= date_sub(now(), INTERVAL 1 MONTH)) as invite_count FROM `user` as a WHERE config_id={$this->config->id}) as temp where invite_count >(select count(*) from `user` where from_user_id = :user_id AND config_id={$this->config->id})", ['user_id' => Yii::$app->user->id])->queryScalar();
-        return $data;
+//        return $data;
     }
 
     /**
      * 点赞，user_id 被赞的用户id
      */
-    public function actionLike($id=null)
+    public function actionLike($id = null)
     {
         $post = Yii::$app->request->post();
-        if(!$id) $id = $post['user_id'];
-        $model = User::findOne(['id'=>$id, 'config_id'=>$this->config->id]);
+        if (!$id) $id = $post['user_id'];
+        $model = User::findOne(['id' => $id, 'config_id' => $this->config->id]);
         $key = 'user_like_' . $model->id . '_' . Yii::$app->user->id;
         $cache = Yii::$app->cache->get($key);
         if ($model !== null && $cache === false) {
