@@ -45,8 +45,9 @@ use <?=$foreignKeyClassName?>;
         }
     } ?>
     <div class="box-footer">
-        <a data-dismiss="modal" href="javascript:history.back();" class="btn btn-default">取消</a>
-        <?= "<?= " ?> Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success pull-right' : 'btn btn-primary pull-right']) ?>
+        <?= "<?= " ?> Html::submitButton($model->isNewRecord ? '保存' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success pull-left' : 'btn btn-primary pull-left']) ?>
+        <a data-dismiss="modal" href="javascript:history.back();" class="btn btn-default pull-right">取消</a>
+
     </div>
     <?= "<?php " ?> ActiveForm::end(); ?>
 </div>
