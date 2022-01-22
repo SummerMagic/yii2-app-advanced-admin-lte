@@ -33,10 +33,11 @@
                     ['label' => '设计师管理', 'icon' => 'fa fa-list', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
                          ['label' => '设计师', 'icon' => 'fa fa-list-ol', 'url' => ['/designer/index']],
 //                         ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category']],
+                        ['label' => '风格管理', 'icon' => 'fa fa-list-ol', 'url' => ['/desgin-style/index']],
+
                     ]],
                     ['label' => '装修管理', 'icon' => 'fa fa-list', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
                         ['label' => '装修进度设置', 'icon' => 'fa fa-list-ol', 'url' => ['/progress/index']],
-//                         ['label' => '资讯分类', 'icon' => 'fa fa-list-ol', 'url' => ['/article-category']],
                     ]],
                     ['label' => '内容运营', 'icon' => 'fa fa-list', 'url' => '#', 'options' => ['class' => 'treeview'], 'items' => [
                         // ['label' => '资讯管理', 'icon' => 'fa fa-list-ol', 'url' => ['/article']],
