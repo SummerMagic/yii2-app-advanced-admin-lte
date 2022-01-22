@@ -52,8 +52,8 @@ class Generator extends \yii\gii\generators\crud\Generator
      */
     public function getDescription()
     {
-        return 'This generator generates a controller and views that implement CRUD (Create, Read, Update, Delete)
-            operations for the specified data model.';
+        return '这个生成器生成实现CRUD(创建、读取、更新、删除)的控制器和视图。
+指定数据模型的操作.';
     }
 
     public function generate() {

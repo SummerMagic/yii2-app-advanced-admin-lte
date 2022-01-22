@@ -50,7 +50,7 @@ class Generator extends \yii\gii\generators\model\Generator
      */
     public function getName()
     {
-        return 'AdminLTE Model Generator';
+        return 'AdminLTE模型生成器';
     }
 
     /**
@@ -58,7 +58,7 @@ class Generator extends \yii\gii\generators\model\Generator
      */
     public function getDescription()
     {
-        return 'This generator generates an ActiveRecord class for the specified database table.';
+        return '这个生成器为指定的数据库表生成一个ActiveRecord类。';
     }
 
     public function generateModelName($tableName) {
